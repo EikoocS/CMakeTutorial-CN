@@ -48,7 +48,7 @@ Now we need to setup debug and release builds. We can use
 [CMAKE_BUILD_TYPE](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html#variable:CMAKE_BUILD_TYPE) to set the
 configuration type:
 
-``` console
+```bash
 cd debug
 cmake -DCMAKE_BUILD_TYPE=Debug ..
 cmake --build .
@@ -75,6 +75,6 @@ Complete/MultiCPackConfig.cmake
 From the [Step12` directory, run `cpack <Step12` directory, run `cpack(1)>](https://cmake.org/cmake/help/latest/manual/Step12` directory, run `cpack.1.html#manual:Step12` directory, run `cpack(1)) specifying our custom configuration file with the
 `config` option:
 
-``` console
+```bash
 cpack --config MultiCPackConfig.cmake
 ```

@@ -1,6 +1,6 @@
 # Step 3: Adding Usage Requirements for a Library
 
-## Exercise 1 - Adding Usage Requirements for a Library
+## 练习 1 - Adding Usage Requirements for a Library
 
 [Usage requirements](https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html#target-usage-requirements) of a target parameters allow for far better control over a
 library or executable\'s link and include line while also giving more
@@ -15,7 +15,7 @@ primary commands that leverage usage requirements are:
 -   [target_precompile_headers](https://cmake.org/cmake/help/latest/command/target_precompile_headers.html#command:target_precompile_headers)
 -   [target_sources](https://cmake.org/cmake/help/latest/command/target_sources.html#command:target_sources)
 
-### Goal
+### 目标
 
 Add usage requirements for a library.
 
@@ -23,12 +23,12 @@ Add usage requirements for a library.
 
 -   [CMAKE_CURRENT_SOURCE_DIR](https://cmake.org/cmake/help/latest/variable/CMAKE_CURRENT_SOURCE_DIR.html#variable:CMAKE_CURRENT_SOURCE_DIR)
 
-### Files to Edit
+### 需要编辑的文件
 
 -   `MathFunctions/CMakeLists.txt`
 -   `CMakeLists.txt`
 
-### Getting Started
+### 入门
 
 In this exercise, we will refactor our code from
 [Adding a Library](./Adding%20a%20Library.md) to use the
@@ -50,7 +50,7 @@ Then, update (and simplify!) the call to
 [target_include_directories](https://cmake.org/cmake/help/latest/command/target_include_directories.html#command:target_include_directories) in the
 top-level `CMakeLists.txt`.
 
-### Build and Run
+### 构建与运行
 
 Make a new directory called [Step3_build`, run the `cmake <Step3_build`, run the `cmake(1)>](https://cmake.org/cmake/help/latest/manual/Step3_build`, run the `cmake.1.html#manual:Step3_build`, run the `cmake(1)) executable or the
 [cmake-gui <cmake-gui(1)>](https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html#manual:cmake-gui(1)) to configure
@@ -59,7 +59,7 @@ the project and then build it with your chosen build tool or by using
 the build directory. Here\'s a refresher of what that looks like from
 the command line:
 
-``` console
+```bash
 mkdir Step3_build
 cd Step3_build
 cmake ../Step3
@@ -69,7 +69,7 @@ cmake --build .
 Next, use the newly built `Tutorial` and verify that it is working as
 expected.
 
-### Solution
+### 解决方案
 
 Let\'s update the code from the previous step to use the modern CMake
 approach of usage requirements.
@@ -85,7 +85,7 @@ At the end of `MathFunctions/CMakeLists.txt`, use
 `INTERFACE` keyword, as follows:
 
 ```html
-<details><summary>TODO 1: Click to show/hide answer</summary>
+<details><summary>TODO 1: 点击显示/隐藏答案</summary>
 ```
 ::: {#MathFunctions/CMakeLists.txt-target_include_directories-INTERFACE .literalinclude caption="TODO 1: MathFunctions/CMakeLists.txt" language="cmake" start-after="# to find MathFunctions.h" end-before="# should we use our own"}
 Step4/MathFunctions/CMakeLists.txt
@@ -101,7 +101,7 @@ top-level `CMakeLists.txt`.
 Remove this line:
 
 ```html
-<details><summary>TODO 2: Click to show/hide answer</summary>
+<details><summary>TODO 2: 点击显示/隐藏答案</summary>
 ```
 ::: {#CMakeLists.txt-remove-EXTRA_INCLUDES .literalinclude caption="TODO 2: CMakeLists.txt" language="cmake" start-after="add_subdirectory(MathFunctions)" end-before="# add the executable"}
 Step3/CMakeLists.txt
@@ -113,7 +113,7 @@ Step3/CMakeLists.txt
 And remove `EXTRA_INCLUDES` from `target_include_directories`:
 
 ```html
-<details><summary>TODO 3: Click to show/hide answer</summary>
+<details><summary>TODO 3: 点击显示/隐藏答案</summary>
 ```
 ::: {#CMakeLists.txt-target_include_directories-remove-EXTRA_INCLUDES .literalinclude caption="TODO 3: CMakeLists.txt" language="cmake" start-after="# so that we will find TutorialConfig.h"}
 Step4/CMakeLists.txt
@@ -129,7 +129,7 @@ of the library target. In larger projects, the classic method of
 specifying library dependencies manually becomes very complicated very
 quickly.
 
-## Exercise 2 - Setting the C++ Standard with Interface Libraries
+## 练习 2 - Setting the C++ Standard with Interface Libraries
 
 Now that we have switched our code to a more modern approach, let\'s
 demonstrate a modern technique to set properties to multiple targets.
@@ -138,22 +138,22 @@ Let\'s refactor our existing code to use an `INTERFACE` library. We will
 use that library in the next step to demonstrate a common use for
 [generator expressions <generator expressions(7)>](https://cmake.org/cmake/help/latest/manual/generator expressions.7.html#manual:generator expressions(7)).
 
-### Goal
+### 目标
 
 Add an `INTERFACE` library target to specify the required C++ standard.
 
-### Helpful Resources
+### 资源
 
 -   [add_library](https://cmake.org/cmake/help/latest/command/add_library.html#command:add_library)
 -   [target_compile_features](https://cmake.org/cmake/help/latest/command/target_compile_features.html#command:target_compile_features)
 -   [target_link_libraries](https://cmake.org/cmake/help/latest/command/target_link_libraries.html#command:target_link_libraries)
 
-### Files to Edit
+### 需要编辑的文件
 
 -   `CMakeLists.txt`
 -   `MathFunctions/CMakeLists.txt`
 
-### Getting Started
+### 入门
 
 In this exercise, we will refactor our code to use an `INTERFACE`
 library to specify the C++ standard.
@@ -169,12 +169,12 @@ Modify `CMakeLists.txt` and `MathFunctions/CMakeLists.txt` so that all
 targets have a [target_link_libraries](https://cmake.org/cmake/help/latest/command/target_link_libraries.html#command:target_link_libraries)
 call to `tutorial_compiler_flags`.
 
-### Build and Run
+### 构建与运行
 
 Since we have our build directory already configured from Exercise 1,
 simply rebuild our code by calling the following:
 
-``` console
+```bash
 cd Step3_build
 cmake --build .
 ```
@@ -182,7 +182,7 @@ cmake --build .
 Next, use the newly built `Tutorial` and verify that it is working as
 expected.
 
-### Solution
+### 解决方案
 
 Let\'s update our code from the previous step to use interface libraries
 to set our C++ requirements.
@@ -201,7 +201,7 @@ And then use [target_compile_features](https://cmake.org/cmake/help/latest/comma
 to add the compiler feature `cxx_std_11`.
 
 ```html
-<details><summary>TODO 4: Click to show/hide answer</summary>
+<details><summary>TODO 4: 点击显示/隐藏答案</summary>
 ```
 ::: {#CMakeLists.txt-cxx_std-feature .literalinclude caption="TODO 4: CMakeLists.txt" language="cmake" start-after="# specify the C++ standard" end-before="# TODO 2: Create helper"}
 Step4/CMakeLists.txt
@@ -216,7 +216,7 @@ library to our new `tutorial_compiler_flags` library. Respectively, the
 code will look like this:
 
 ```html
-<details><summary>TODO 5: Click to show/hide answer</summary>
+<details><summary>TODO 5: 点击显示/隐藏答案</summary>
 ```
 ::: {#CMakeLists.txt-target_link_libraries-step4 .literalinclude caption="TODO 5: CMakeLists.txt" language="cmake" start-after="add_executable(Tutorial tutorial.cxx)" end-before="# add the binary tree to the search path for include file"}
 Step4/CMakeLists.txt
@@ -228,7 +228,7 @@ Step4/CMakeLists.txt
 this:
 
 ```html
-<details><summary>TODO 6: Click to show/hide answer</summary>
+<details><summary>TODO 6: 点击显示/隐藏答案</summary>
 ```
 ::: {#MathFunctions-CMakeLists.txt-target_link_libraries-step4 .literalinclude caption="TODO 6: MathFunctions/CMakeLists.txt" language="cmake" start-after="# link SqrtLibrary to tutorial_compiler_flags" end-before="target_link_libraries(MathFunctions"}
 Step4/MathFunctions/CMakeLists.txt
@@ -240,7 +240,7 @@ Step4/MathFunctions/CMakeLists.txt
 and this:
 
 ```html
-<details><summary>TODO 7: Click to show/hide answer</summary>
+<details><summary>TODO 7: 点击显示/隐藏答案</summary>
 ```
 ::: {#MathFunctions-SqrtLibrary-target_link_libraries-step4 .literalinclude caption="TODO 7: MathFunctions/CMakeLists.txt" language="cmake" start-after="# link MathFunctions to tutorial_compiler_flags"}
 Step4/MathFunctions/CMakeLists.txt

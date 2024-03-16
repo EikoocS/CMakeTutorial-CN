@@ -32,7 +32,7 @@ The next step is to build the project in the usual manner and then run
 the [cpack <cpack(1)>](https://cmake.org/cmake/help/latest/manual/cpack.1.html#manual:cpack(1)) executable. To
 build a binary distribution, from the binary directory run:
 
-``` console
+```bash
 cpack
 ```
 
@@ -40,7 +40,7 @@ To specify the generator, use the [-G](https://cmake.org/cmake/help/latest/manua
 [-C](https://cmake.org/cmake/help/latest/manual/cpack.1.html#cmdoption-cpack-C) to specify the
 configuration. For example:
 
-``` console
+```bash
 cpack -G ZIP -C Debug
 ```
 
@@ -52,7 +52,7 @@ For a list of available generators, see
 
 To create an archive of the *full* source tree you would type:
 
-``` console
+```bash
 cpack --config CPackSourceConfig.cmake
 ```
 

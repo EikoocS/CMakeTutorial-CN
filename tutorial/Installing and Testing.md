@@ -1,6 +1,6 @@
 # Step 5: Installing and Testing
 
-## Exercise 1 - Install Rules
+## 练习 1 - Install Rules
 
 Often, it is not enough to only build an executable, it should also be
 installable. With CMake, we can specify install rules using the
@@ -8,7 +8,7 @@ installable. With CMake, we can specify install rules using the
 installations for your builds in CMake is often as simple as specifying
 an install location and the targets and files to be installed.
 
-### Goal
+### 目标
 
 Install the `Tutorial` executable and the `MathFunctions` library.
 
@@ -16,12 +16,12 @@ Install the `Tutorial` executable and the `MathFunctions` library.
 
 -   [install](https://cmake.org/cmake/help/latest/command/install.html#command:install)
 
-### Files to Edit
+### 需要编辑的文件
 
 -   `MathFunctions/CMakeLists.txt`
 -   `CMakeLists.txt`
 
-### Getting Started
+### 入门
 
 The starting code is provided in the `Step5` directory. In this
 exercise, complete `TODO 1` through `TODO 4`.
@@ -36,7 +36,7 @@ executable to the `bin` directory. Lastly, any header files should be
 installed to the `include` directory. Remember that `TutorialConfig.h`
 is in the [PROJECT_BINARY_DIR](https://cmake.org/cmake/help/latest/variable/PROJECT_BINARY_DIR.html#variable:PROJECT_BINARY_DIR).
 
-### Build and Run
+### 构建与运行
 
 Make a new directory called `Step5_build`. Run the
 [cmake <cmake(1)>](https://cmake.org/cmake/help/latest/manual/cmake.1.html#manual:cmake(1)) executable or the
@@ -50,7 +50,7 @@ the [cmake  <cmake (1)>](https://cmake.org/cmake/help/latest/manual/cmake .1.htm
 from the command line. This step will install the appropriate header
 files, libraries, and executables. For example:
 
-``` console
+```bash
 cmake --install .
 ```
 
@@ -58,14 +58,14 @@ For multi-configuration tools, don\'t forget to use the
 [--config](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-build-config)
 argument to specify the configuration.
 
-``` console
+```bash
 cmake --install . --config Release
 ```
 
 If using an IDE, simply build the `INSTALL` target. You can build the
 same install target from the command line like the following:
 
-``` console
+```bash
 cmake --build . --target install --config Debug
 ```
 
@@ -73,14 +73,14 @@ The CMake variable [CMAKE_INSTALL_PREFIX](https://cmake.org/cmake/help/latest/va
 be installed. If using the [cmake --install](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-install) command, the installation prefix can be overridden via
 the [--prefix](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake--install-0) argument. For example:
 
-``` console
+```bash
 cmake --install . --prefix "/home/myuser/installdir"
 ```
 
 Navigate to the install directory and verify that the installed
 `Tutorial` runs.
 
-### Solution
+### 解决方案
 
 The install rules for our project are fairly simple:
 
@@ -93,7 +93,7 @@ The install rules for our project are fairly simple:
 So to the end of `MathFunctions/CMakeLists.txt` we add:
 
 ```html
-<details><summary>TODO 1: Click to show/hide answer</summary>
+<details><summary>TODO 1: 点击显示/隐藏答案</summary>
 ```
 ::: {#MathFunctions/CMakeLists.txt-install-TARGETS .literalinclude caption="TODO 1: MathFunctions/CMakeLists.txt" language="cmake" start-after="# install libs" end-before="# install include headers"}
 Step6/MathFunctions/CMakeLists.txt
@@ -105,7 +105,7 @@ Step6/MathFunctions/CMakeLists.txt
 and
 
 ```html
-<details><summary>TODO 2: Click to show/hide answer</summary>
+<details><summary>TODO 2: 点击显示/隐藏答案</summary>
 ```
 ::: {#MathFunctions/CMakeLists.txt-install-headers .literalinclude caption="TODO 2: MathFunctions/CMakeLists.txt" language="cmake" start-after="# install include headers"}
 Step6/MathFunctions/CMakeLists.txt
@@ -118,7 +118,7 @@ The install rules for the `Tutorial` executable and configured header
 file are similar. To the end of the top-level `CMakeLists.txt` we add:
 
 ```html
-<details><summary>TODO 3,4: Click to show/hide answer</summary>
+<details><summary>TODO 3,4: 点击显示/隐藏答案</summary>
 ```
 ::: {#TODO 3,4: CMakeLists.txt-install-TARGETS .literalinclude caption="CMakeLists.txt" language="cmake" start-after="# add the install targets" end-before="# TODO 1: Replace enable_testing() with include(CTest)"}
 Step6/CMakeLists.txt
@@ -130,7 +130,7 @@ Step6/CMakeLists.txt
 That is all that is needed to create a basic local install of the
 tutorial.
 
-## Exercise 2 - Testing Support {#Tutorial Testing Support}
+## 练习 2 - Testing Support {#Tutorial Testing Support}
 
 CTest offers a way to easily manage tests for your project. Tests can be
 added through the [add_test](https://cmake.org/cmake/help/latest/command/add_test.html#command:add_test) command.
@@ -138,7 +138,7 @@ Although it is not explicitly covered in this tutorial, there is a lot
 of compatibility between CTest and other testing frameworks such as
 [GoogleTest](https://cmake.org/cmake/help/latest/module/GoogleTest.html#module:GoogleTest).
 
-### Goal
+### 目标
 
 Create unit tests for our executable using CTest.
 
@@ -150,11 +150,11 @@ Create unit tests for our executable using CTest.
 -   [set_tests_properties](https://cmake.org/cmake/help/latest/command/set_tests_properties.html#command:set_tests_properties)
 -   [ctest <ctest(1)>](https://cmake.org/cmake/help/latest/manual/ctest.1.html#manual:ctest(1))
 
-### Files to Edit
+### 需要编辑的文件
 
 -   `CMakeLists.txt`
 
-### Getting Started
+### 入门
 
 The starting source code is provided in the `Step5` directory. In this
 exercise, complete `TODO 5` through `TODO 9`.
@@ -164,7 +164,7 @@ project using [add_test](https://cmake.org/cmake/help/latest/command/add_test.ht
 through adding 3 simple tests and then you can add additional testing as
 you see fit.
 
-### Build and Run
+### 构建与运行
 
 Navigate to the build directory and rebuild the application. Then, run
 the [ctest](https://cmake.org/cmake/help/latest/manual/ctest.1.html) executable:
@@ -177,14 +177,14 @@ subdirectory!). Release mode would be executed from the same location
 but with a `-C Release`. Alternatively, build the `RUN_TESTS` target
 from the IDE.
 
-### Solution
+### 解决方案
 
 Let\'s test our application. At the end of the top-level
 `CMakeLists.txt` file we first need to enable testing with the
 [enable_testing](https://cmake.org/cmake/help/latest/command/enable_testing.html#command:enable_testing) command.
 
 ```html
-<details><summary>TODO 5: Click to show/hide answer</summary>
+<details><summary>TODO 5: 点击显示/隐藏答案</summary>
 ```
 ::: {#CMakeLists.txt-enable_testing .literalinclude caption="TODO 5: CMakeLists.txt" language="cmake" start-after="# enable testing" end-before="# does the application run"}
 Step6/CMakeLists.txt
@@ -202,7 +202,7 @@ that application runs, does not segfault or otherwise crash, and has a
 zero return value. This is the basic form of a CTest test.
 
 ```html
-<details><summary>TODO 6: Click to show/hide answer</summary>
+<details><summary>TODO 6: 点击显示/隐藏答案</summary>
 ```
 ::: {#CMakeLists.txt-test-runs .literalinclude caption="TODO 6: CMakeLists.txt" language="cmake" start-after="# does the application run" end-before="# does the usage message work"}
 Step6/CMakeLists.txt
@@ -216,7 +216,7 @@ contains certain strings. In this case, verifying that the usage message
 is printed when an incorrect number of arguments are provided.
 
 ```html
-<details><summary>TODO 7: Click to show/hide answer</summary>
+<details><summary>TODO 7: 点击显示/隐藏答案</summary>
 ```
 ::: {#CMakeLists.txt-test-usage .literalinclude caption="TODO 7: CMakeLists.txt" language="cmake" start-after="# does the usage message work?" end-before="# define a function to simplify adding tests"}
 Step6/CMakeLists.txt
@@ -229,7 +229,7 @@ The next test we will add verifies the computed value is truly the
 square root.
 
 ```html
-<details><summary>TODO 8: Click to show/hide answer</summary>
+<details><summary>TODO 8: 点击显示/隐藏答案</summary>
 ```
 ``` {#CMakeLists.txt-test-standard .cmake caption="TODO 8: CMakeLists.txt"}
 add_test(NAME StandardUse COMMAND Tutorial 4)
@@ -250,7 +250,7 @@ the project with a name, input, and expected results based on the passed
 arguments.
 
 ```html
-<details><summary>TODO 9: Click to show/hide answer</summary>
+<details><summary>TODO 9: 点击显示/隐藏答案</summary>
 ```
 ::: {#CMakeLists.txt-generalized-tests .literalinclude caption="TODO 9: CMakeLists.txt" language="cmake" start-after="# define a function to simplify adding tests"}
 Step6/CMakeLists.txt

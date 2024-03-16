@@ -1,416 +1,304 @@
-# Step 1: A Basic Starting Point
+# 第 1 步：基础的起点
 
-Where do I start with CMake? This step will provide an introduction to
-some of CMake\'s basic syntax, commands, and variables. As these
-concepts are introduced, we will work through three exercises and create
-a simple CMake project.
+怎样开始使用 CMake？这一步将介绍的一些基本语法、命令和变量。在介绍这些概念的同时，我们将通过三个练习来创建一个简单的 CMake 项目。
 
-Each exercise in this step will start with some background information.
-Then, a goal and list of helpful resources are provided. Each file in
-the `Files to Edit` section is in the `Step1` directory and contains one
-or more `TODO` comments. Each `TODO` represents a line or two of code to
-change or add. The `TODO` s are intended to be completed in numerical
-order, first complete `TODO 1` then `TODO 2`, etc. The `Getting Started`
-section will give some helpful hints and guide you through the exercise.
-Then the `Build and Run` section will walk step-by-step through how to
-build and test the exercise. Finally, at the end of each exercise the
-intended solution is discussed.
+本步骤中的每个练习都会先介绍一些背景信息。然后是 __目标__ 和 __资源__。在这一步中要编辑的文件部分中的每个文件都位于 `Step1` 目录下，包含一个或多个 `TODO` 注释。每个 `TODO` 代表要更改或添加的一两行代码。`TODO` 应按数字顺序完成，首先完成 `TODO 1`，然后完成 `TODO 2` 等等。__入门__ 部分将提供一些有用的提示，指导你完成练习。然后，__构建与运行__ 部分将逐步介绍如何构建和测试练习。最后，在每个练习的结尾都会讨论预期的 __解决方案__ 。
 
-Also note that each step in the tutorial builds on the next. So, for
-example, the starting code for `Step2` is the complete solution to
-`Step1`.
+还要注意的是，教程中的每一步都是在上一步的基础上进行的。例如，步骤 2 的起始代码就是步骤 1 的完整解决方案。
 
-## Exercise 1 - Building a Basic Project
+## 练习 1 - 构建一个基础的项目
 
-The most basic CMake project is an executable built from a single source
-code file. For simple projects like this, a `CMakeLists.txt` file with
-three commands is all that is required.
+最基本的 CMake 项目是由单个源代码文件构建的可执行文件。对于像这样的简单项目，只需一个包含三条命令的 `CMakeLists.txt` 三条命令即可。
 
-**Note:** Although upper, lower and mixed case commands are supported by
-CMake, lower case commands are preferred and will be used throughout the
-tutorial.
+**注意:** 虽然 CMake 支持大写、小写和混合大小写命令，但本教程都将使用小写命令。
 
-Any project\'s top most CMakeLists.txt must start by specifying a
-minimum CMake version using the
-[cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required) command. This
-establishes policy settings and ensures that the following CMake
-functions are run with a compatible version of CMake.
+任何项目的 CMakeLists.txt 都必须首先使用 [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required) 命令指定最低版本. 这提供了一种策略来保证 CMake 功能可以被兼容的运行。
 
-To start a project, we use the [project](https://cmake.org/cmake/help/latest/command/project.html#command:project) command to set the project name. This call is required
-with every project and should be called soon after
-[cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required). As we will
-see later, this command can also be used to specify other project level
-information such as the language or version number.
+要开始一个项目，我们使用 [project](https://cmake.org/cmake/help/latest/command/project.html#command:project) 命令来设置项目名称。每个项目都需要调用，并且应在 [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required) 之后调用。稍后我们将看到，该命令还可用于指定其他项目级信息，如语言和版本号。
 
-Finally, the [add_executable](https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable) command
-tells CMake to create an executable using the specified source code
-files.
+最后，使用 [add_executable](https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable) 命令告诉 CMake 使用指定的源文件创建一个可执行文件。
 
-### Goal
+### 目标
 
-Understand how to create a simple CMake project.
+理解如何创建一个简单的 CMake 项目。
 
-### Helpful Resources
+### 资源
 
 -   [add_executable](https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable)
 -   [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required)
 -   [project](https://cmake.org/cmake/help/latest/command/project.html#command:project)
 
-### Files to Edit
+### 需要编辑的文件
 
 -   `CMakeLists.txt`
 
-### Getting Started
+### 入门
 
-The source code for `tutorial.cxx` is provided in the
-`Help/guide/tutorial/Step1` directory and can be used to compute the
-square root of a number. This file does not need to be edited in this
-step.
+tutorial.cxx "的源代码位于 `tutorial/Step1` 目录下，可用于计算一个数字的平方根。本步骤无需编辑该文件。
 
-In the same directory is a `CMakeLists.txt` file which you will
-complete. Start with `TODO 1` and work through `TODO 3`.
+需要进行完善的就是在同一目录的 `CMakeLists.txt` 文件。从 `TODO 1` 到 `TODO 3`。
 
-### Build and Run
+### 构建与运行
 
-Once `TODO 1` through `TODO 3` have been completed, we are ready to
-build and run our project! First, run the
-[cmake <cmake(1)>](https://cmake.org/cmake/help/latest/manual/cmake.1.html#manual:cmake(1)) executable or the
-[cmake-gui <cmake-gui(1)>](https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html#manual:cmake-gui(1)) to configure
-the project and then build it with your chosen build tool.
+完成 `TODO 1` 到 `TODO 3` 我们就可以构建运行我们的项目了! 首先, 执行 [cmake <cmake(1)>](https://cmake.org/cmake/help/latest/manual/cmake.1.html#manual:cmake(1)) 或 [cmake-gui <cmake-gui(1)>](https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html#manual:cmake-gui(1)) 来配置项目，然后用你选择的工具构建它。
 
-For example, from the command line we could navigate to the
-`Help/guide/tutorial` directory of the CMake source code tree and create
-a build directory:
+例如，我们可以从命令行导航到 CMake 源代码树的 "Help/guide/tutorial "目录，并创建一个构建目录：
 
-``` console
+```bash
 mkdir Step1_build
 ```
 
-Next, navigate to that build directory and run
-[cmake <cmake(1)>](https://cmake.org/cmake/help/latest/manual/cmake.1.html#manual:cmake(1)) to configure the
-project and generate a native build system:
+接下来，导航至该构建目录并运行 [cmake <cmake(1)>](https://cmake.org/cmake/help/latest/manual/cmake.1.html#manual:cmake(1)) 来配置该项目并生成本地编译系统：
 
-``` console
+```bash
 cd Step1_build
 cmake ../Step1
 ```
 
-Then call that build system to actually compile/link the project:
+然后调用构建系统来实际编译/链接项目：
 
-``` console
+
+```bash
 cmake --build .
 ```
 
-For multi-config generators (e.g. Visual Studio), first navigate to the
-appropriate subdirectory, for example:
+对于多配置生成器（如 Visual Studio），首先导航到
+适当的子目录，例如
 
-``` console
+```bash
 cd Debug
 ```
 
-Finally, try to use the newly built `Tutorial`:
+最后，尝试使用新创建的 `Tutorial`：
 
-``` console
+```bash
 Tutorial 4294967296
 Tutorial 10
 Tutorial
 ```
 
-**Note:** Depending on the shell, the correct syntax may be `Tutorial`,
-`./Tutorial` or `.\Tutorial`. For simplicity, the exercises will use
-`Tutorial` throughout.
+**注意：** 根据 shell 的不同，正确的语法可能是 `Tutorial`（例如 Windows CMD）、`./Tutorial` （例如 Bash）或 `.\Tutorial`（例如 Windows PowerShell）。为简单起见，本练习将始终使用 `Tutorial`。
 
-### Solution
+### 解决方案
 
-As mentioned above, a three line `CMakeLists.txt` is all that we need to
-get up and running. The first line is to use
-[cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required) to set the
-CMake version as follows:
+如上所述，我们只需要三行 `CMakeLists.txt
+即可运行。第一行是使用 [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required) 来设置 CMake 版本:
 
-```html
-<details><summary>TODO 1: Click to show/hide answer</summary>
+<details><summary>TODO 1: 点击显示/隐藏答案</summary>
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
 ```
-::: {#CMakeLists.txt-cmake_minimum_required .literalinclude caption="TODO 1: CMakeLists.txt" language="cmake" end-before="# set the project name and version"}
-Step2/CMakeLists.txt
-:::
+</details></br>
 
-```html
-</details>
-```
-The next step to make a basic project is to use the
-[project](https://cmake.org/cmake/help/latest/command/project.html#command:project) command as follows to set
-the project name:
+制作基本项目的下一步是使用 [project](https://cmake.org/cmake/help/latest/command/project.html#command:project) 命令来设置项目名称：
 
-```html
-<details><summary>TODO 2: Click to show/hide answer</summary>
-```
-``` {#CMakeLists.txt-project .cmake caption="TODO 2: CMakeLists.txt"}
+<details><summary>TODO 2: 点击显示/隐藏答案</summary>
+
+```cmake
 project(Tutorial)
 ```
 
-```html
+</details></br>
+
+对于完成这个项目我们需要调用的最后一条命令是 [add_executable](https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable)：
+
+<details><summary>TODO 3: 点击显示/隐藏答案</summary>
+
+```cmake
+add_executable(Tutorial tutorial.cxx)
+```
 </details>
-```
-The last command to call for a basic project is
-[add_executable](https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable). We call it as
-follows:
 
-```html
-<details><summary>TODO 3: Click to show/hide answer</summary>
-```
-::: {#CMakeLists.txt-add_executable .literalinclude caption="TODO 3: CMakeLists.txt" language="cmake" start-after="# add the executable" end-before="# TODO 3:"}
-Step2/CMakeLists.txt
-:::
+## 练习 2 - 指定 C++ 标准
 
-```html
-</details>
-```
-## Exercise 2 - Specifying the C++ Standard
+CMake 有一些特殊的变量，要么是在幕后创建的，要么在被项目代码设置时对 CMake 有特殊意义。其中许多变量以 CMAKE_ 开头。在创建项目变量时要避免与这种命名冲突。其中两个特殊的可设置用户变量是 [CMAKE_CXX_STANDARD](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD.html#variable:CMAKE_CXX_STANDARD) 和 [CMAKE_CXX_STANDARD_REQUIRED](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD_REQUIRED.html#variable:CMAKE_CXX_STANDARD_REQUIRED) 。这两个变量可以一起使用来指定构建项目所需的 C++ 标准。
 
-CMake has some special variables that are either created behind the
-scenes or have meaning to CMake when set by project code. Many of these
-variables start with `CMAKE_`. Avoid this naming convention when
-creating variables for your projects. Two of these special user settable
-variables are [CMAKE_CXX_STANDARD](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD.html#variable:CMAKE_CXX_STANDARD)
-and [CMAKE_CXX_STANDARD_REQUIRED](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD_REQUIRED.html#variable:CMAKE_CXX_STANDARD_REQUIRED).
-These may be used together to specify the C++ standard needed to build
-the project.
+### 目标
 
-### Goal
+添加一项需要 C++11 的功能。
 
-Add a feature that requires C++11.
-
-### Helpful Resources
+### 资源
 
 -   [CMAKE_CXX_STANDARD](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD.html#variable:CMAKE_CXX_STANDARD)
 -   [CMAKE_CXX_STANDARD_REQUIRED](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD_REQUIRED.html#variable:CMAKE_CXX_STANDARD_REQUIRED)
 -   [set](https://cmake.org/cmake/help/latest/command/set.html#command:set)
 
-### Files to Edit
+### 需要编辑的文件
 
 -   `CMakeLists.txt`
 -   `tutorial.cxx`
 
-### Getting Started
+__译注__ 这里的 .cxx 即 C++ 的源代码文件格式，也就是常见的 .cpp 。在 [StackOverflow](https://stackoverflow.com/questions/17986118/what-is-xx-in-cxx-in-a-cmake-cmakelists-txt-file) 的一个回答里有一种对为什么使用 “cxx” 而不是 “cpp” 的解释：</br>
+ - xx 的意思是 “++” ，每个 x 就像是旋转了 45° 的 “+”，CXX 的意思就是 “C++”
+ - 为什么不使用 “c++” ： 因为宏里面不能包含 "+"
+ - 为什么不使用 “cpp” ： 因为已经被用来表示 “**C** **P**re**P**rocessor” （ C 预处理器）
 
-Continue editing files in the `Step1` directory. Start with `TODO 4` and
-complete through `TODO 6`.
+### 入门
 
-First, edit `tutorial.cxx` by adding a feature that requires C++11. Then
-update `CMakeLists.txt` to require C++11.
+继续编辑 `Step1` 目录中的文件。从 `TODO 4` 开始，直到 `TODO 6` 完成。
 
-### Build and Run
+首先，编辑 `tutorial.cxx` 添加需要 C++11 的功能，然后更新 `CMakeLists.txt` 来指定 C++11。
 
-Let\'s build our project again. Since we already created a build
-directory and ran CMake for Exercise 1, we can skip to the build step:
+### 构建与运行
 
-``` console
+让我们再次构建我们的项目。由于我们已经在练习 1 中创建了目录并运行了 CMake，所以我们可以跳过构建步骤：
+
+```bash
 cd Step1_build
 cmake --build .
 ```
 
-Now we can try to use the newly built `Tutorial` with same commands as
-before:
+现在，我们可以尝试使用新构建的 `Tutorial` 并执行与之前相同的命令：
 
-``` console
+```bash
 Tutorial 4294967296
 Tutorial 10
 Tutorial
 ```
 
-### Solution
+### 解决方案
 
-We start by adding some C++11 features to our project by replacing
-`atof` with `std::stod` in `tutorial.cxx`. This looks like the
-following:
+我们首先在项目中添加一些 C++11 功能，在 `tutorial.cxx` 中用 `std::stod` 替换`atof`：
 
-```html
-<details><summary>TODO 4: Click to show/hide answer</summary>
+
+<details><summary>TODO 4: 点击显示/隐藏答案</summary>
+
+```cpp
+const double inputValue = std::stod(argv[1]);
 ```
-::: {#tutorial.cxx-cxx11 .literalinclude caption="TODO 4: tutorial.cxx" language="c++" start-after="// convert input to double" end-before="// TODO 6:"}
-Step2/tutorial.cxx
-:::
 
-```html
+</details></br>
+
+要完成 `TODO 5` 只需删除 `#include <cstdlib>`。
+
+我们需要在 CMake 代码中明确说明它应该使用正确的标标记。在 CMake 中启用对特定 C++ 标准的支持的一种方法是使用 [CMAKE_CXX_STANDARD](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD.html#variable:CMAKE_CXX_STANDARD) 变量。对于这个指南，将 `CMakeLists.txt` 文件中的 [CMAKE_CXX_STANDARD](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD.html#variable:CMAKE_CXX_STANDARD) 变量设置为 11，将
+[CMAKE_CXX_STANDARD_REQUIRED](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD_REQUIRED.html#variable:CMAKE_CXX_STANDARD_REQUIRED) 变量设置为 True。 确保 [CMAKE_CXX_STANDARD](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD.html#variable:CMAKE_CXX_STANDARD) 在调用
+[add_executable](https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable) 之前声明。
+
+<details><summary>TODO 6: 点击显示/隐藏答案</summary>
+
+```cmake
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+```
 </details>
-```
-To complete `TODO 5`, simply remove `#include <cstdlib>`.
 
-We will need to explicitly state in the CMake code that it should use
-the correct flags. One way to enable support for a specific C++ standard
-in CMake is by using the [CMAKE_CXX_STANDARD](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD.html#variable:CMAKE_CXX_STANDARD) variable. For this tutorial, set the
-[CMAKE_CXX_STANDARD](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD.html#variable:CMAKE_CXX_STANDARD) variable in the
-`CMakeLists.txt` file to `11` and
-[CMAKE_CXX_STANDARD_REQUIRED](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD_REQUIRED.html#variable:CMAKE_CXX_STANDARD_REQUIRED) to
-[True`. Make sure to add the `CMAKE_CXX_STANDARD](https://cmake.org/cmake/help/latest/variable/True`. Make sure to add the `CMAKE_CXX_STANDARD.html#variable:True`. Make sure to add the `CMAKE_CXX_STANDARD) declarations above the call to
-[add_executable](https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable).
+## 练习 3 - 添加版本号和配置头文件
 
-```html
-<details><summary>TODO 6: Click to show/hide answer</summary>
-```
-::: {#CMakeLists.txt-CXX_STANDARD .literalinclude caption="TODO 6: CMakeLists.txt" language="cmake" start-after="# specify the C++ standard" end-before="# configure a header file"}
-Step2/CMakeLists.txt
-:::
+有时，在源代码中也可以使用在 `CMakelists.txt` 文件中定义的变量。在这种情况下，例如我们希望输出项目的版本。
 
-```html
-</details>
-```
-## Exercise 3 - Adding a Version Number and Configured Header File
+其中一种方法是使用配置头文件。我们创建一个输入文件，其中包含一个或多个要替换的变量。这些变量有特殊的语法，看起来像 `@VAR@`。然后，我们使用 [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) 命令将输入文件复制到给定的输出文件，并用 `CMakelists.txt` 文件中 `VAR` 的当前值替换这些变量。
 
-Sometimes it may be useful to have a variable that is defined in your
-`CMakelists.txt` file also be available in your source code. In this
-case, we would like to print the project version.
+虽然我们可以直接在源代码中编辑版本，但我们更倾向于使用这一功能，因为它可以创建一个单一数据源，而无需重复定义。
 
-One way to accomplish this is by using a configured header file. We
-create an input file with one or more variables to replace. These
-variables have special syntax which looks like `@VAR@`. Then, we use the
-[configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) command to copy the
-input file to a given output file and replace these variables with the
-current value of `VAR` in the `CMakelists.txt` file.
+### 目标
 
-While we could edit the version directly in the source code, using this
-feature is preferred since it creates a single source of truth and
-avoids duplication.
+定义并报告项目的版本号。
 
-### Goal
+### 资源
 
-Define and report the project\'s version number.
-
-### Helpful Resources
-
--   [<PROJECT-NAME>_VERSION_MAJOR](https://cmake.org/cmake/help/latest/variable/<PROJECT-NAME>_VERSION_MAJOR.html#variable:<PROJECT-NAME>_VERSION_MAJOR)
--   [<PROJECT-NAME>_VERSION_MINOR](https://cmake.org/cmake/help/latest/variable/<PROJECT-NAME>_VERSION_MINOR.html#variable:<PROJECT-NAME>_VERSION_MINOR)
+-   [\<PROJECT-NAME\>_VERSION_MAJOR](https://cmake.org/cmake/help/latest/variable/PROJECT-NAME_VERSION_MAJOR.html#variable:<PROJECT-NAME>_VERSION_MAJOR)
+-   [\<PROJECT-NAME\>_VERSION_MINOR](https://cmake.org/cmake/help/latest/variable/PROJECT-NAME_VERSION_MINOR.html#variable:<PROJECT-NAME>_VERSION_MINOR)
 -   [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file)
 -   [target_include_directories](https://cmake.org/cmake/help/latest/command/target_include_directories.html#command:target_include_directories)
 
-### Files to Edit
+### 需要编辑的文件
 
 -   `CMakeLists.txt`
 -   `tutorial.cxx`
 
-### Getting Started
+### 入门
 
-Continue to edit files from `Step1`. Start on `TODO 7` and complete
-through `TODO 12`. In this exercise, we start by adding a project
-version number in `CMakeLists.txt`. In that same file, use
-[configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) to copy a given input
-file to an output file and substitute some variable values in the input
-file content.
+继续编辑 "步骤 1 "中的文件。从 "操作 7 "开始，完成
+到 `TODO12`。在本练习中，我们首先在 `CMakeLists.txt` 中添加项目版本号。在同一文件中，使用 [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) 将给定的输入文件复制到输出文件，并在输入文件内容中指定的一些变量值。
 
-Next, create an input header file `TutorialConfig.h.in` defining version
-numbers which will accept variables passed from
-[configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file).
+接下来，创建一个输入头文件 `TutorialConfig.h.in` ，定义版本号，接受 [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) 传递的变量。
 
-Finally, update `tutorial.cxx` to print out its version number.
+最后，修改 `tutorial.cxx` 来打印出版本号。
 
-### Build and Run
+### 构建与运行
 
-Let\'s build our project again. As before, we already created a build
-directory and ran CMake so we can skip to the build step:
+让我们再次构建我们的项目。和之前一样，我们已经创建了一个构建目录并运行了 CMake，因此可以跳过构建步骤：
 
-``` console
+```bash
 cd Step1_build
 cmake --build .
 ```
 
-Verify that the version number is now reported when running the
-executable without any arguments.
+首先验证一下在不带任何参数的情况下运行可执行文件时，是否会报告版本号。
 
-### Solution
+### 解决方案
 
-In this exercise, we improve our executable by printing a version
-number. While we could do this exclusively in the source code, using
-`CMakeLists.txt` lets us maintain a single source of data for the
-version number.
+在本练习中，我们将通过打印版本号来改进我们的可执行文件。虽然我们可以只在源代码中这样做，但使用 `CMakeLists.txt` 可以让我们保持版本号来自单一数据源。
 
-First, we modify the `CMakeLists.txt` file to use the
-[project](https://cmake.org/cmake/help/latest/command/project.html#command:project) command to set both the
-project name and version number. When the [project](https://cmake.org/cmake/help/latest/command/project.html#command:project) command is called, CMake defines
-`Tutorial_VERSION_MAJOR` and `Tutorial_VERSION_MINOR` behind the scenes.
+首先，我们修改 `CMakeLists.txt` 文件，使用 [project](https://cmake.org/cmake/help/latest/command/project.html#command:project) 命令来设置项目名称和版本号。调用 [project](https://cmake.org/cmake/help/latest/command/project.html#command:project) 命令时，CMake 会在幕后定义 `Tutorial_VERSION_MAJOR` 和 `Tutorial_VERSION_MINOR`。
 
-```html
-<details><summary>TODO 7: Click to show/hide answer</summary>
+<details><summary>TODO 7: 点击显示/隐藏答案</summary>
+
+```cmake
+project(Tutorial VERSION 1.0)
 ```
-::: {#CMakeLists.txt-project-VERSION .literalinclude caption="TODO 7: CMakeLists.txt" language="cmake" start-after="# set the project name and version" end-before="# specify the C++ standard"}
-Step2/CMakeLists.txt
-:::
 
-```html
-</details>
+</details></br>
+
+然后，我们使用 [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) 复制输入文件，并替换指定的 CMake 变量：
+
+<details><summary>TODO 8: 点击显示/隐藏答案</summary>
+
+```cmake
+configure_file(TutorialConfig.h.in TutorialConfig.h)
 ```
-Then we used [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) to copy
-the input file with the specified CMake variables replaced:
 
-```html
-<details><summary>TODO 8: Click to show/hide answer</summary>
+</details></br>
+
+由于配置文件将写入项目二进制目录，我们必须将该目录添加到搜索包含文件的路径列表中。
+
+**注意：** 在本教程中，我们将交替使用项目构建目录和项目二进制目录。这两个目录是相同的，并不是指 `bin/` 目录。
+
+我们使用 [target_include_directories](https://cmake.org/cmake/help/latest/command/target_include_directories.html#command:target_include_directories) 来指定目标可执行文件应在何处查找 include 文件。
+
+<details><summary>TODO 9: 点击显示/隐藏答案</summary>
+
+```cmake
+target_include_directories(Tutorial PUBLIC
+                           "${PROJECT_BINARY_DIR}"
+                           )
 ```
-::: {#CMakeLists.txt-configure_file .literalinclude caption="TODO 8: CMakeLists.txt" language="cmake" start-after="# to the source code" end-before="# TODO 2:"}
-Step2/CMakeLists.txt
-:::
+</details></br>
 
-```html
-</details>
+`TutorialConfig.h.in` 是要配置的输入头文件。当从我们的 `CMakeLists.txt` 调用 [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) 时，`@Tutorial_VERSION_MAJOR@` 和`@Tutorial_VERSION_MINOR@` 的值将被替换为 `TutorialConfig.h` 中项目的相应版本号。
+
+<details><summary>TODO 10: 点击显示/隐藏答案</summary>
+
+```h
+// Tutorial 的配置选项和设置
+#define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
+#define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
 ```
-Since the configured file will be written into the project binary
-directory, we must add that directory to the list of paths to search for
-include files.
+</details></br>
 
-**Note:** Throughout this tutorial, we will refer to the project build
-and the project binary directory interchangeably. These are the same and
-are not meant to refer to a [bin/]{.title-ref} directory.
+接下来，我们需要修改 `tutorial.cxx` 以包含已配置的头文件 `TutorialConfig.h`。
 
-We used [target_include_directories](https://cmake.org/cmake/help/latest/command/target_include_directories.html#command:target_include_directories)
-to specify where the executable target should look for include files.
+<details><summary>TODO 11: 点击显示/隐藏答案</summary>
 
-```html
-<details><summary>TODO 9: Click to show/hide answer</summary>
-```
-::: {#CMakeLists.txt-target_include_directories .literalinclude caption="TODO 9: CMakeLists.txt" language="cmake" start-after="# so that we will find TutorialConfig.h"}
-Step2/CMakeLists.txt
-:::
-
-```html
-</details>
-```
-`TutorialConfig.h.in` is the input header file to be configured. When
-[configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) is called from our
-`CMakeLists.txt`, the values for `@Tutorial_VERSION_MAJOR@` and
-`@Tutorial_VERSION_MINOR@` will be replaced with the corresponding
-version numbers from the project in `TutorialConfig.h`.
-
-```html
-<details><summary>TODO 10: Click to show/hide answer</summary>
-```
-::: {#TutorialConfig.h.in .literalinclude caption="TODO 10: TutorialConfig.h.in" language="c++"}
-Step2/TutorialConfig.h.in
-:::
-
-```html
-</details>
-```
-Next, we need to modify `tutorial.cxx` to include the configured header
-file, `TutorialConfig.h`.
-
-```html
-<details><summary>TODO 11: Click to show/hide answer</summary>
-```
-``` {.c++ caption="TODO 11: tutorial.cxx"}
+```cxx
 #include "TutorialConfig.h"
 ```
 
-```html
-</details>
-```
-Finally, we print out the executable name and version number by updating
-`tutorial.cxx` as follows:
+</details></br>
 
-```html
-<details><summary>TODO 12: Click to show/hide answer</summary>
-```
-::: {#tutorial.cxx-print-version .literalinclude caption="TODO 12 : tutorial.cxx" language="c++" start-after="{" end-before="// convert input to double"}
-Step2/tutorial.cxx
-:::
+最后，我们通过更新 `tutorial.cxx` 来打印出可执行文件的名称和版本号，如下所示：
 
-```html
-</details>
+<details><summary>TODO 12: 点击显示/隐藏答案</summary>
+
+```cxx
+  if (argc < 2) {
+    // 报告版本
+    std::cout << argv[0] << " Version " << Tutorial_VERSION_MAJOR << "."
+              << Tutorial_VERSION_MINOR << std::endl;
+    std::cout << "Usage: " << argv[0] << " number" << std::endl;
+    return 1;
+  }
 ```
+</details></br>

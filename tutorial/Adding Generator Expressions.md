@@ -26,7 +26,7 @@ expressions are the `0` and `1` expressions. A `$<0:...>` results in the
 empty string, and `$<1:...>` results in the content of `...`. They can
 also be nested.
 
-## Exercise 1 - Adding Compiler Warning Flags with Generator Expressions
+## 练习 1 - Adding Compiler Warning Flags with Generator Expressions
 
 A common usage of
 [generator expressions <generator expressions(7)>](https://cmake.org/cmake/help/latest/manual/generator expressions.7.html#manual:generator expressions(7)) is to conditionally add compiler flags, such as those for
@@ -34,22 +34,22 @@ language levels or warnings. A nice pattern is to associate this
 information to an `INTERFACE` target allowing this information to
 propagate.
 
-### Goal
+### 目标
 
 Add compiler warning flags when building but not for installed versions.
 
-### Helpful Resources
+### 资源
 
 -   [cmake-generator-expressions(7)](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#manual:cmake-generator-expressions(7))
 -   [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required)
 -   [set](https://cmake.org/cmake/help/latest/command/set.html#command:set)
 -   [target_compile_options](https://cmake.org/cmake/help/latest/command/target_compile_options.html#command:target_compile_options)
 
-### Files to Edit
+### 需要编辑的文件
 
 -   `CMakeLists.txt`
 
-### Getting Started
+### 入门
 
 Open the file `Step4/CMakeLists.txt` and complete `TODO 1` through
 `TODO 4`.
@@ -64,7 +64,7 @@ project. As warning flags vary based on the compiler, we use the
 `COMPILE_LANG_AND_ID` generator expression to control which flags to
 apply given a language and a set of compiler ids.
 
-### Build and Run
+### 构建与运行
 
 Make a new directory called `Step4_build`, run the
 [cmake <cmake(1)>](https://cmake.org/cmake/help/latest/manual/cmake.1.html#manual:cmake(1)) executable or the
@@ -72,20 +72,20 @@ Make a new directory called `Step4_build`, run the
 the project and then build it with your chosen build tool or by using
 `cmake --build .` from the build directory.
 
-``` console
+```bash
 mkdir Step4_build
 cd Step4_build
 cmake ../Step4
 cmake --build .
 ```
 
-### Solution
+### 解决方案
 
 Update the [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required) to
 require at least CMake version `3.15`:
 
 ```html
-<details><summary>TODO 1: Click to show/hide answer</summary>
+<details><summary>TODO 1: 点击显示/隐藏答案</summary>
 ```
 ::: {#MathFunctions-CMakeLists.txt-minimum-required-step4 .literalinclude caption="TODO 1: CMakeLists.txt" language="cmake" end-before="# set the project name and version"}
 Step5/CMakeLists.txt
@@ -100,7 +100,7 @@ the `COMPILE_LANG_AND_ID` generator expression. We set the result in the
 variables `gcc_like_cxx` and `msvc_cxx` as follows:
 
 ```html
-<details><summary>TODO 2: Click to show/hide answer</summary>
+<details><summary>TODO 2: 点击显示/隐藏答案</summary>
 ```
 ::: {#CMakeLists.txt-compile_lang_and_id .literalinclude caption="TODO 2: CMakeLists.txt" language="cmake" start-after="# the BUILD_INTERFACE genex" end-before="target_compile_options(tutorial_compiler_flags INTERFACE"}
 Step5/CMakeLists.txt
@@ -115,7 +115,7 @@ another generator expression to apply the respective flags only when the
 variables are true. We use  to apply these flags to our interface library.
 
 ```html
-<details><summary>TODO 3: Click to show/hide answer</summary>
+<details><summary>TODO 3: 点击显示/隐藏答案</summary>
 ```
 ``` {#CMakeLists.txt-compile_flags .cmake caption="TODO 3: CMakeLists.txt"}
 target_compile_options(tutorial_compiler_flags INTERFACE
@@ -134,7 +134,7 @@ using the `BUILD_INTERFACE` condition. The resulting full code looks
 like the following:
 
 ```html
-<details><summary>TODO 4: Click to show/hide answer</summary>
+<details><summary>TODO 4: 点击显示/隐藏答案</summary>
 ```
 ::: {#CMakeLists.txt-target_compile_options-genex .literalinclude caption="TODO 4: CMakeLists.txt" language="cmake" start-after="set(msvc_cxx \"$<COMPILE_LANG_AND_ID:CXX,MSVC>\")" end-before="# configure a header file to pass some of the CMake settings"}
 Step5/CMakeLists.txt

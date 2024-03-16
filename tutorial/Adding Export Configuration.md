@@ -34,7 +34,7 @@ Complete/CMakeLists.txt
 At this point you should try and run CMake. If everything is setup
 properly you will see that CMake will generate an error that looks like:
 
-``` console
+```bash
 Target "MathFunctions" INTERFACE_INCLUDE_DIRECTORIES property contains
 path:
 

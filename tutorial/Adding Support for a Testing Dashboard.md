@@ -5,23 +5,23 @@ We already defined a number of tests for our project in
 [Testing Support](https://cmake.org/cmake/help/latest/guide/tutorial/Installing%20and%20Testing.html#tutorial-testing-support). Now we just have to run those tests and submit them to
 CDash.
 
-## Exercise 1 - Send Results to a Testing Dashboard
+## 练习 1 - Send Results to a Testing Dashboard
 
-### Goal
+### 目标
 
 Display our CTest results with CDash.
 
-### Helpful Resources
+### 资源
 
 -   [ctest(1)](https://cmake.org/cmake/help/latest/manual/ctest.1.html#manual:ctest(1))
 -   [include](https://cmake.org/cmake/help/latest/command/include.html#command:include)
 -   [CTest](https://cmake.org/cmake/help/latest/module/CTest.html#module:CTest)
 
-### Files to Edit
+### 需要编辑的文件
 
 -   `CMakeLists.txt`
 
-### Getting Started
+### 入门
 
 For this exercise, complete `TODO 1` in the top-level `CMakeLists.txt`
 by including the [CTest](https://cmake.org/cmake/help/latest/module/CTest.html#module:CTest) module. This
@@ -52,7 +52,7 @@ modified locally.
 Step7/CTestConfig.cmake
 :::
 
-### Build and Run
+### 构建与运行
 
 Note that as part of the CDash submission some information about your
 development system (e.g. site name or full pathnames) may displayed
@@ -64,14 +64,14 @@ To create a simple test dashboard, run the
 the project but do not build it yet. Instead, navigate to the build
 directory and run:
 
-``` console
+```bash
 ctest [-VV] -D Experimental
 ```
 
 Remember, for multi-config generators (e.g. Visual Studio), the
 configuration type must be specified:
 
-``` console
+```bash
 ctest [-VV] -C Debug -D Experimental
 ```
 
@@ -82,13 +82,13 @@ build the project, run any tests, and submit the results to Kitware\'s
 public dashboard:
 <https://my.cdash.org/index.php?project=CMakeTutorial>.
 
-### Solution
+### 解决方案
 
 The only CMake code changed needed in this step was to enable dashboard
 submissions to CDash by including the [CTest](https://cmake.org/cmake/help/latest/module/CTest.html#module:CTest) module in our top-level `CMakeLists.txt`:
 
 ```html
-<details><summary>TODO 1: Click to show/hide answer</summary>
+<details><summary>TODO 1: 点击显示/隐藏答案</summary>
 ```
 ::: {#CMakeLists.txt-include-CTest .literalinclude caption="TODO 1: CMakeLists.txt" language="cmake" start-after="# enable testing" end-before="# does the application run"}
 Step7/CMakeLists.txt
