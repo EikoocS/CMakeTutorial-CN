@@ -22,7 +22,7 @@
 
 理解如何创建一个简单的 CMake 项目。
 
-### 资源
+### 用到的资源
 
 -   [add_executable](https://cmake.org/cmake/help/latest/command/add_executable.html#command:add_executable)
 -   [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required)
@@ -32,11 +32,11 @@
 
 -   `CMakeLists.txt`
 
-### 入门
+### 提示
 
 tutorial.cxx "的源代码位于 `tutorial/Step1` 目录下，可用于计算一个数字的平方根。本步骤无需编辑该文件。
 
-需要进行完善的就是在同一目录的 `CMakeLists.txt` 文件。从 `TODO 1` 到 `TODO 3`。
+在 `TODO 1` 到 `TODO 3` 中我们需要完善在该目录下的 `CMakeLists.txt` 文件。
 
 ### 构建与运行
 
@@ -79,7 +79,7 @@ Tutorial
 
 **注意：** 根据 shell 的不同，正确的语法可能是 `Tutorial`（例如 Windows CMD）、`./Tutorial` （例如 Bash）或 `.\Tutorial`（例如 Windows PowerShell）。为简单起见，本练习将始终使用 `Tutorial`。
 
-### 解决方案
+### 答案
 
 如上所述，我们只需要三行 `CMakeLists.txt
 即可运行。第一行是使用 [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required) 来设置 CMake 版本:
@@ -118,7 +118,7 @@ CMake 有一些特殊的变量，要么是在幕后创建的，要么在被项�
 
 添加一项需要 C++11 的功能。
 
-### 资源
+### 用到的资源
 
 -   [CMAKE_CXX_STANDARD](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD.html#variable:CMAKE_CXX_STANDARD)
 -   [CMAKE_CXX_STANDARD_REQUIRED](https://cmake.org/cmake/help/latest/variable/CMAKE_CXX_STANDARD_REQUIRED.html#variable:CMAKE_CXX_STANDARD_REQUIRED)
@@ -134,9 +134,9 @@ __译注__ 这里的 .cxx 即 C++ 的源代码文件格式，也就是常见的 
  - 为什么不使用 “c++” ： 因为宏里面不能包含 "+"
  - 为什么不使用 “cpp” ： 因为已经被用来表示 “**C** **P**re**P**rocessor” （ C 预处理器）
 
-### 入门
+### 提示
 
-继续编辑 `Step1` 目录中的文件。从 `TODO 4` 开始，直到 `TODO 6` 完成。
+从 `TODO 4` 到 `TODO 6` ，我们需要继续编辑 `Step1` 目录中的文件。
 
 首先，编辑 `tutorial.cxx` 添加需要 C++11 的功能，然后更新 `CMakeLists.txt` 来指定 C++11。
 
@@ -157,7 +157,7 @@ Tutorial 10
 Tutorial
 ```
 
-### 解决方案
+### 答案
 
 我们首先在项目中添加一些 C++11 功能，在 `tutorial.cxx` 中用 `std::stod` 替换`atof`：
 
@@ -196,7 +196,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 定义并报告项目的版本号。
 
-### 资源
+### 用到的资源
 
 -   [\<PROJECT-NAME\>_VERSION_MAJOR](https://cmake.org/cmake/help/latest/variable/PROJECT-NAME_VERSION_MAJOR.html#variable:<PROJECT-NAME>_VERSION_MAJOR)
 -   [\<PROJECT-NAME\>_VERSION_MINOR](https://cmake.org/cmake/help/latest/variable/PROJECT-NAME_VERSION_MINOR.html#variable:<PROJECT-NAME>_VERSION_MINOR)
@@ -208,10 +208,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 -   `CMakeLists.txt`
 -   `tutorial.cxx`
 
-### 入门
+### 提示
 
-继续编辑 "步骤 1 "中的文件。从 "操作 7 "开始，完成
-到 `TODO12`。在本练习中，我们首先在 `CMakeLists.txt` 中添加项目版本号。在同一文件中，使用 [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) 将给定的输入文件复制到输出文件，并在输入文件内容中指定的一些变量值。
+从 `TODO 7` 到 `TODO 12`，我们将继续编辑 `Step1` 中的文件。在本练习中，我们首先在 `CMakeLists.txt` 中添加项目版本号。在同一文件中，使用 [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) 将给定的输入文件复制到输出文件，并在输入文件内容中指定的一些变量值。
 
 接下来，创建一个输入头文件 `TutorialConfig.h.in` ，定义版本号，接受 [configure_file](https://cmake.org/cmake/help/latest/command/configure_file.html#command:configure_file) 传递的变量。
 
@@ -228,7 +227,7 @@ cmake --build .
 
 首先验证一下在不带任何参数的情况下运行可执行文件时，是否会报告版本号。
 
-### 解决方案
+### 答案
 
 在本练习中，我们将通过打印版本号来改进我们的可执行文件。虽然我们可以只在源代码中这样做，但使用 `CMakeLists.txt` 可以让我们保持版本号来自单一数据源。
 

@@ -21,7 +21,7 @@ Install the `Tutorial` executable and the `MathFunctions` library.
 -   `MathFunctions/CMakeLists.txt`
 -   `CMakeLists.txt`
 
-### 入门
+### 提示
 
 The starting code is provided in the `Step5` directory. In this
 exercise, complete `TODO 1` through `TODO 4`.
@@ -80,7 +80,7 @@ cmake --install . --prefix "/home/myuser/installdir"
 Navigate to the install directory and verify that the installed
 `Tutorial` runs.
 
-### 解决方案
+### 答案
 
 The install rules for our project are fairly simple:
 
@@ -92,41 +92,29 @@ The install rules for our project are fairly simple:
 
 So to the end of `MathFunctions/CMakeLists.txt` we add:
 
-```html
 <details><summary>TODO 1: 点击显示/隐藏答案</summary>
-```
 ::: {#MathFunctions/CMakeLists.txt-install-TARGETS .literalinclude caption="TODO 1: MathFunctions/CMakeLists.txt" language="cmake" start-after="# install libs" end-before="# install include headers"}
 Step6/MathFunctions/CMakeLists.txt
 :::
 
-```html
 </details>
-```
 and
 
-```html
 <details><summary>TODO 2: 点击显示/隐藏答案</summary>
-```
 ::: {#MathFunctions/CMakeLists.txt-install-headers .literalinclude caption="TODO 2: MathFunctions/CMakeLists.txt" language="cmake" start-after="# install include headers"}
 Step6/MathFunctions/CMakeLists.txt
 :::
 
-```html
 </details>
-```
 The install rules for the `Tutorial` executable and configured header
 file are similar. To the end of the top-level `CMakeLists.txt` we add:
 
-```html
 <details><summary>TODO 3,4: 点击显示/隐藏答案</summary>
-```
 ::: {#TODO 3,4: CMakeLists.txt-install-TARGETS .literalinclude caption="CMakeLists.txt" language="cmake" start-after="# add the install targets" end-before="# TODO 1: Replace enable_testing() with include(CTest)"}
 Step6/CMakeLists.txt
 :::
 
-```html
 </details>
-```
 That is all that is needed to create a basic local install of the
 tutorial.
 
@@ -154,7 +142,7 @@ Create unit tests for our executable using CTest.
 
 -   `CMakeLists.txt`
 
-### 入门
+### 提示
 
 The starting source code is provided in the `Step5` directory. In this
 exercise, complete `TODO 5` through `TODO 9`.
@@ -177,22 +165,18 @@ subdirectory!). Release mode would be executed from the same location
 but with a `-C Release`. Alternatively, build the `RUN_TESTS` target
 from the IDE.
 
-### 解决方案
+### 答案
 
 Let\'s test our application. At the end of the top-level
 `CMakeLists.txt` file we first need to enable testing with the
 [enable_testing](https://cmake.org/cmake/help/latest/command/enable_testing.html#command:enable_testing) command.
 
-```html
 <details><summary>TODO 5: 点击显示/隐藏答案</summary>
-```
 ::: {#CMakeLists.txt-enable_testing .literalinclude caption="TODO 5: CMakeLists.txt" language="cmake" start-after="# enable testing" end-before="# does the application run"}
 Step6/CMakeLists.txt
 :::
 
-```html
 </details>
-```
 With testing enabled, we will add a number of basic tests to verify that
 the application is working correctly. First, we create a test using
 [add_test](https://cmake.org/cmake/help/latest/command/add_test.html#command:add_test) which runs the `Tutorial`
@@ -201,46 +185,34 @@ going to check the executable\'s computed answer. This test will verify
 that application runs, does not segfault or otherwise crash, and has a
 zero return value. This is the basic form of a CTest test.
 
-```html
 <details><summary>TODO 6: 点击显示/隐藏答案</summary>
-```
 ::: {#CMakeLists.txt-test-runs .literalinclude caption="TODO 6: CMakeLists.txt" language="cmake" start-after="# does the application run" end-before="# does the usage message work"}
 Step6/CMakeLists.txt
 :::
 
-```html
 </details>
-```
 Next, let\'s use the [PASS_REGULAR_EXPRESSION](https://cmake.org/cmake/help/latest/prop_test/PASS_REGULAR_EXPRESSION.html#prop_test:PASS_REGULAR_EXPRESSION) test property to verify that the output of the test
 contains certain strings. In this case, verifying that the usage message
 is printed when an incorrect number of arguments are provided.
 
-```html
 <details><summary>TODO 7: 点击显示/隐藏答案</summary>
-```
 ::: {#CMakeLists.txt-test-usage .literalinclude caption="TODO 7: CMakeLists.txt" language="cmake" start-after="# does the usage message work?" end-before="# define a function to simplify adding tests"}
 Step6/CMakeLists.txt
 :::
 
-```html
 </details>
-```
 The next test we will add verifies the computed value is truly the
 square root.
 
-```html
 <details><summary>TODO 8: 点击显示/隐藏答案</summary>
-```
-``` {#CMakeLists.txt-test-standard .cmake caption="TODO 8: CMakeLists.txt"}
+```cmake
 add_test(NAME StandardUse COMMAND Tutorial 4)
 set_tests_properties(StandardUse
   PROPERTIES PASS_REGULAR_EXPRESSION "4 is 2"
   )
 ```
 
-```html
 </details>
-```
 This one test is not enough to give us confidence that it will work for
 all values passed in. We should add more tests to verify this. To easily
 add more tests, we make a function called `do_test` that runs the
@@ -249,13 +221,9 @@ given input. For each invocation of `do_test`, another test is added to
 the project with a name, input, and expected results based on the passed
 arguments.
 
-```html
 <details><summary>TODO 9: 点击显示/隐藏答案</summary>
-```
 ::: {#CMakeLists.txt-generalized-tests .literalinclude caption="TODO 9: CMakeLists.txt" language="cmake" start-after="# define a function to simplify adding tests"}
 Step6/CMakeLists.txt
 :::
 
-```html
 </details>
-```

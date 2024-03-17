@@ -12,8 +12,9 @@
 
 ！注意！GitHub 上仓库为 [https://gitlab.kitware.com/cmake](https://gitlab.kitware.com/cmake) 的镜像，因此不提供在 Github 上提供 issue 。
 
-译者能力水平并不高XD，对于翻译中的问题请提交 issues 或提交 PR
-
 ## 使用工具
  - 格式转换工具 [pandoc](https://pandoc.org/) （依然有些东西要自己手敲修正——）
  - 部分翻译参考 [DeepL](https://www.deepl.com/zh/translator)
+
+## PS
+译者本身的并不是什么大佬，翻译难免出现各种问题，还望海涵。对于翻译中的问题请提交 issues 或提交 PR。

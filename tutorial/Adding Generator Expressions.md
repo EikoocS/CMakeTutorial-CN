@@ -38,7 +38,7 @@ propagate.
 
 Add compiler warning flags when building but not for installed versions.
 
-### 资源
+### 用到的资源
 
 -   [cmake-generator-expressions(7)](https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html#manual:cmake-generator-expressions(7))
 -   [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required)
@@ -49,7 +49,7 @@ Add compiler warning flags when building but not for installed versions.
 
 -   `CMakeLists.txt`
 
-### 入门
+### 提示
 
 Open the file `Step4/CMakeLists.txt` and complete `TODO 1` through
 `TODO 4`.
@@ -79,67 +79,51 @@ cmake ../Step4
 cmake --build .
 ```
 
-### 解决方案
+### 答案
 
 Update the [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html#command:cmake_minimum_required) to
 require at least CMake version `3.15`:
 
-```html
 <details><summary>TODO 1: 点击显示/隐藏答案</summary>
-```
 ::: {#MathFunctions-CMakeLists.txt-minimum-required-step4 .literalinclude caption="TODO 1: CMakeLists.txt" language="cmake" end-before="# set the project name and version"}
 Step5/CMakeLists.txt
 :::
 
-```html
 </details>
-```
 Next we determine which compiler our system is currently using to build
 since warning flags vary based on the compiler we use. This is done with
 the `COMPILE_LANG_AND_ID` generator expression. We set the result in the
 variables `gcc_like_cxx` and `msvc_cxx` as follows:
 
-```html
 <details><summary>TODO 2: 点击显示/隐藏答案</summary>
-```
 ::: {#CMakeLists.txt-compile_lang_and_id .literalinclude caption="TODO 2: CMakeLists.txt" language="cmake" start-after="# the BUILD_INTERFACE genex" end-before="target_compile_options(tutorial_compiler_flags INTERFACE"}
 Step5/CMakeLists.txt
 :::
 
-```html
 </details>
-```
 Next we add the desired compiler warning flags that we want for our
 project. Using our variables `gcc_like_cxx` and `msvc_cxx`, we can use
 another generator expression to apply the respective flags only when the
 variables are true. We use  to apply these flags to our interface library.
 
-```html
 <details><summary>TODO 3: 点击显示/隐藏答案</summary>
-```
-``` {#CMakeLists.txt-compile_flags .cmake caption="TODO 3: CMakeLists.txt"}
+```cmake
 target_compile_options(tutorial_compiler_flags INTERFACE
   "$<${gcc_like_cxx}:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>"
   "$<${msvc_cxx}:-W3>"
 )
 ```
 
-```html
 </details>
-```
 Lastly, we only want these warning flags to be used during builds.
 Consumers of our installed project should not inherit our warning flags.
 To specify this, we wrap our flags from TODO 3 in a generator expression
 using the `BUILD_INTERFACE` condition. The resulting full code looks
 like the following:
 
-```html
 <details><summary>TODO 4: 点击显示/隐藏答案</summary>
-```
 ::: {#CMakeLists.txt-target_compile_options-genex .literalinclude caption="TODO 4: CMakeLists.txt" language="cmake" start-after="set(msvc_cxx \"$<COMPILE_LANG_AND_ID:CXX,MSVC>\")" end-before="# configure a header file to pass some of the CMake settings"}
 Step5/CMakeLists.txt
 :::
 
-```html
 </details>
-```

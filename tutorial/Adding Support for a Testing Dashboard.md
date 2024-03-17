@@ -11,7 +11,7 @@ CDash.
 
 Display our CTest results with CDash.
 
-### 资源
+### 用到的资源
 
 -   [ctest(1)](https://cmake.org/cmake/help/latest/manual/ctest.1.html#manual:ctest(1))
 -   [include](https://cmake.org/cmake/help/latest/command/include.html#command:include)
@@ -21,7 +21,7 @@ Display our CTest results with CDash.
 
 -   `CMakeLists.txt`
 
-### 入门
+### 提示
 
 For this exercise, complete `TODO 1` in the top-level `CMakeLists.txt`
 by including the [CTest](https://cmake.org/cmake/help/latest/module/CTest.html#module:CTest) module. This
@@ -82,18 +82,14 @@ build the project, run any tests, and submit the results to Kitware\'s
 public dashboard:
 <https://my.cdash.org/index.php?project=CMakeTutorial>.
 
-### 解决方案
+### 答案
 
 The only CMake code changed needed in this step was to enable dashboard
 submissions to CDash by including the [CTest](https://cmake.org/cmake/help/latest/module/CTest.html#module:CTest) module in our top-level `CMakeLists.txt`:
 
-```html
 <details><summary>TODO 1: 点击显示/隐藏答案</summary>
-```
 ::: {#CMakeLists.txt-include-CTest .literalinclude caption="TODO 1: CMakeLists.txt" language="cmake" start-after="# enable testing" end-before="# does the application run"}
 Step7/CMakeLists.txt
 :::
 
-```html
 </details>
-```

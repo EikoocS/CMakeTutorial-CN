@@ -1,31 +1,20 @@
-# Step 2: Adding a Library
+# 第二步 2: 添加库
 
-At this point, we have seen how to create a basic project using CMake.
-In this step, we will learn how to create and use a library in our
-project. We will also see how to make the use of our library optional.
+至此，我们已经了解了如何使用 CMake 创建一个基本项目。在这一步中，我们将学习如何在项目中创建和使用库以及为多种实现添加可选则的库和实现。
 
-## 练习 1 - Creating a Library
+## 练习 1 - 创建一个库
 
-To add a library in CMake, use the [add_library](https://cmake.org/cmake/help/latest/command/add_library.html#command:add_library) command and specify which source files should make up
-the library.
+要在 CMake 中添加一个库，请使用 [add_library](https://cmake.org/cmake/help/latest/command/add_library.html#command:add_library) 命令，并指定组成该库的源文件。
 
-Rather than placing all of the source files in one directory, we can
-organize our project with one or more subdirectories. In this case, we
-will create a subdirectory specifically for our library. Here, we can
-add a new `CMakeLists.txt` file and one or more source files. In the top
-level `CMakeLists.txt` file, we will use the
-[add_subdirectory](https://cmake.org/cmake/help/latest/command/add_subdirectory.html#command:add_subdirectory) command to add the
-subdirectory to the build.
+我们可以用一个或多个子目录来组织项目，而不是将所有源文件放在一个目录中。在本例中，我们将专门为库创建一个子目录。在这里，我们可以添加一个新的 `CMakeLists.txt` 文件和一个或多个源文件。在顶层的 `CMakeLists.txt` 文件中，我们将使用 [add_subdirectory](https://cmake.org/cmake/help/latest/command/add_subdirectory.html#command:add_subdirectory) 命令将子目录添加到构建中。
 
-Once the library is created, it is connected to our executable target
-with [target_include_directories](https://cmake.org/cmake/help/latest/command/target_include_directories.html#command:target_include_directories) and
-[target_link_libraries](https://cmake.org/cmake/help/latest/command/target_link_libraries.html#command:target_link_libraries).
+一旦创建了库，它就会通过 [target_include_directories](https://cmake.org/cmake/help/latest/command/target_include_directories.html#command:target_include_directories) 和 [target_link_libraries](https://cmake.org/cmake/help/latest/command/target_link_libraries.html#command:target_link_libraries) 连接到我们的可执行目标。
 
 ### 目标
 
-Add and use a library.
+添加并使用一个库。
 
-### 资源
+### 用到的资源
 
 -   [add_library](https://cmake.org/cmake/help/latest/command/add_library.html#command:add_library)
 -   [add_subdirectory](https://cmake.org/cmake/help/latest/command/add_subdirectory.html#command:add_subdirectory)
@@ -39,39 +28,25 @@ Add and use a library.
 -   `tutorial.cxx`
 -   `MathFunctions/CMakeLists.txt`
 
-### 入门
+### 提示
 
-In this exercise, we will add a library to our project that contains our
-own implementation for computing the square root of a number. The
-executable can then use this library instead of the standard square root
-function provided by the compiler.
+在本练习中，我们将在项目中添加一个库，其中包含我们自己实现的数字平方根计算方法。然后，可执行文件就可以使用这个库代替编译器提供的标准平方根函数。
+ 
+在本教程中，我们将把函数库放到名为 `MathFunctions` 的子目录中。该目录已包含头文件 `MathFunctions.h` 和 `mysqrt.h`。我们还提供了它们各自的源文件 `MathFunctions.cxx` 和 `mysqrt.cxx`。我们不需要修改这些文件。`mysqrt.cxx` 有一个名为 `mysqrt` 的函数，它提供了与编译器的 `sqrt` 函数类似的功能。`MathFunctions.cxx` 包含一个函数 `sqrt`，用于隐藏 `sqrt` 的实现细节。
 
-For this tutorial we will put the library into a subdirectory called
-`MathFunctions`. This directory already contains the header files
-`MathFunctions.h` and `mysqrt.h`. Their respective source files
-`MathFunctions.cxx` and `mysqrt.cxx` are also provided. We will not need
-to modify any of these files. `mysqrt.cxx` has one function called
-`mysqrt` that provides similar functionality to the compiler\'s `sqrt`
-function. `MathFunctions.cxx` contains one function `sqrt` which serves
-to hide the implementation details of `sqrt`.
+在 `tutorial/Step2` 目录中，完成 `TODO 1` 到 `TODO 6`。
 
-From the `Help/guide/tutorial/Step2` directory, start with `TODO 1` and
-complete through `TODO 6`.
+首先，完善 `MathFunctions` 目录下的 `CMakeLists.txt`。
 
-First, fill in the one line `CMakeLists.txt` in the `MathFunctions`
-subdirectory.
+接着，编辑主目录下的 `CMakeLists.txt`。
 
-Next, edit the top level `CMakeLists.txt`.
-
-Finally, use the newly created `MathFunctions` library in `tutorial.cxx`
+最后, 在 `tutorial.cxx` 中使用新创建的 `MathFunctions` 库。
 
 ### 构建与运行
 
-Run the [cmake  <cmake (1)>](https://cmake.org/cmake/help/latest/manual/cmake .1.html#manual:cmake (1)) executable
-or the [cmake-gui <cmake-gui(1)>](https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html#manual:cmake-gui(1)) to
-configure the project and then build it with your chosen build tool.
+运行 [cmake <cmake (1)>](https://cmake.org/cmake/help/latest/manual/cmake.1.html#manual:cmake(1)) 可执行文件或 [cmake-gui <cmake-gui(1)>](https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html#manual:cmake-gui(1)) 配置项目，然后使用所选的构建工具构建项目。
 
-Below is a refresher of what that looks like from the command line:
+命令的提示：
 
 ```bash
 mkdir Step2_build
@@ -80,115 +55,81 @@ cmake ../Step2
 cmake --build .
 ```
 
-Try to use the newly built `Tutorial` and ensure that it is still
-producing accurate square root values.
+尝试使用新建的 `Tutorial` 并确保它仍能生成准确的平方根值。
 
-### 解决方案
+### 答案
 
-In the `CMakeLists.txt` file in the `MathFunctions` directory, we create
-a library target called `MathFunctions` with
-[add_library](https://cmake.org/cmake/help/latest/command/add_library.html#command:add_library). The source files for
-the library are passed as an argument to [add_library](https://cmake.org/cmake/help/latest/command/add_library.html#command:add_library). This looks like the following line:
+在 `MathFunctions` 目录下的 `CMakeLists.txt` 文件中，我们用 [add_library](https://cmake.org/cmake/help/latest/command/add_library.html#command:add_library) 创建了一个名为 `MathFunctions` 的目标库。库的源文件作为参数传递给 [add_library](https://cmake.org/cmake/help/latest/command/add_library.html#command:add_library)：
 
-```html
 <details><summary>TODO 1: 点击显示/隐藏答案</summary>
-```
-``` {#MathFunctions/CMakeLists.txt-add_library .cmake caption="TODO 1: MathFunctions/CMakeLists.txt"}
+
+```cmake
 add_library(MathFunctions MathFunctions.cxx mysqrt.cxx)
 ```
 
-```html
-</details>
-```
-To make use of the new library we will add an
-[add_subdirectory](https://cmake.org/cmake/help/latest/command/add_subdirectory.html#command:add_subdirectory) call in the
-top-level `CMakeLists.txt` file so that the library will get built.
+</details></br>
+为了使用新定义的库，我们将在顶层的 `CMakeLists.txt` 文件中添加一个 [add_subdirectory](https://cmake.org/cmake/help/latest/command/add_subdirectory.html#command:add_subdirectory) 调用来编译该库。
 
-```html
 <details><summary>TODO 2: 点击显示/隐藏答案</summary>
-```
-``` {#CMakeLists.txt-add_subdirectory .cmake caption="TODO 2: CMakeLists.txt"}
-add_subdirectory(MathFunctions)
-```
 
-```html
-</details>
-```
-Next, the new library target is linked to the executable target using
-[target_link_libraries](https://cmake.org/cmake/help/latest/command/target_link_libraries.html#command:target_link_libraries).
-
-```html
-<details><summary>TODO 3: 点击显示/隐藏答案</summary>
-```
-``` {#CMakeLists.txt-target_link_libraries .cmake caption="TODO 3: CMakeLists.txt"}
+```cmake
 target_link_libraries(Tutorial PUBLIC MathFunctions)
 ```
 
-```html
-</details>
-```
-Finally we need to specify the library\'s header file location. Modify
-the existing [target_include_directories](https://cmake.org/cmake/help/latest/command/target_include_directories.html#command:target_include_directories) call to add the `MathFunctions` subdirectory as an
-include directory so that the `MathFunctions.h` header file can be
-found.
+</details></br>
 
-```html
-<details><summary>TODO 4: 点击显示/隐藏答案</summary>
+然后，使用 [target_link_libraries](https://cmake.org/cmake/help/latest/command/target_link_libraries.html#command:target_link_libraries) 将新目标库链接到可执行目标。
+
+<details><summary>TODO 3: 点击显示/隐藏答案</summary>
+
+```cmake
+target_link_libraries(Tutorial PUBLIC MathFunctions)
 ```
-``` {#CMakeLists.txt-target_include_directories-step2 .cmake caption="TODO 4: CMakeLists.txt"}
+
+</details></br>
+
+最后，我们需要指定库的头文件位置。修改现有的 [target_include_directories](https://cmake.org/cmake/help/latest/command/target_include_directories.html#command:target_include_directories) 调用，添加 `MathFunctions` 子目录作为 include 目录，以便找到 `MathFunctions.h` 头文件。
+
+<details><summary>TODO 4: 点击显示/隐藏答案</summary>
+```cmake
 target_include_directories(Tutorial PUBLIC
                           "${PROJECT_BINARY_DIR}"
                           "${PROJECT_SOURCE_DIR}/MathFunctions"
                           )
 ```
 
-```html
-</details>
-```
-Now let\'s use our library. In `tutorial.cxx`, include
-`MathFunctions.h`:
+</details></br>
 
-```html
+现在让我们使用我们的函数库。在 `tutorial.cxx` 中 include `MathFunctions.h`：
+
 <details><summary>TODO 5: 点击显示/隐藏答案</summary>
-```
-::: {#CMakeLists.txt-include-MathFunctions.h .literalinclude caption="TODO 5: tutorial.cxx" language="cmake" start-after="#include <string>" end-before="#include \"TutorialConfig.h\""}
-Step3/tutorial.cxx
-:::
 
-```html
-</details>
+```cxx
+#include "MathFunctions.h"
 ```
-Lastly, replace `sqrt` with the wrapper function `mathfunctions::sqrt`.
 
-```html
+</details></br>
+
+最后，将 `sqrt` 替换为封装函数 `mathfunctions::sqrt`。
+
 <details><summary>TODO 6: 点击显示/隐藏答案</summary>
-```
-::: {#CMakeLists.txt-option .literalinclude caption="TODO 6: tutorial.cxx" language="cmake" start-after="const double inputValue = std::stod(argv[1]);" end-before="std::cout"}
-Step3/tutorial.cxx
-:::
 
-```html
+```cxx
+const double outputValue = mathfunctions::sqrt(inputValue);
+```
+
 </details>
-```
-## 练习 2 - Adding an Option
+## 练习 2 - 添加一个选项
 
-Now let us add an option in the MathFunctions library to allow
-developers to select either the custom square root implementation or the
-built in standard implementation. While for the tutorial there really
-isn\'t any need to do so, for larger projects this is a common
-occurrence.
+现在，让我们在 MathFunctions 库中添加一个选项，允许开发人员选择使用自定义平方根实现或内置的标准实现。虽然对于本教程中的平方根函数来说没有必要，但对于大型项目来说，这是经常发生的事情。
 
-CMake can do this using the [option](https://cmake.org/cmake/help/latest/command/option.html#command:option)
-command. This gives users a variable which they can change when
-configuring their cmake build. This setting will be stored in the cache
-so that the user does not need to set the value each time they run CMake
-on a build directory.
+CMake 可以使用 [option](https://cmake.org/cmake/help/latest/command/option.html#command:option) 命令实现这一功能。这样，用户就可以在配置 cmake 编译时更改一个变量。该设置将保存在缓存中，因此用户无需每次在构建目录上运行 CMake 时都设置该值。
 
 ### 目标
 
-Add the option to build without `MathFunctions`.
+添加不使用 `MathFunctions` 的构建选项。
 
-### 资源
+### 用到的资源
 
 -   [if](https://cmake.org/cmake/help/latest/command/if.html#command:if)
 -   [option](https://cmake.org/cmake/help/latest/command/option.html#command:option)
@@ -199,186 +140,140 @@ Add the option to build without `MathFunctions`.
 -   `MathFunctions/CMakeLists.txt`
 -   `MathFunctions/MathFunctions.cxx`
 
-### 入门
+### 提示
 
-Start with the resulting files from Exercise 1. Complete `TODO 7`
-through `TODO 14`.
+用练习 1 的结果来完成 `TODO 7` 到 `TODO 14`。
 
-First create a variable `USE_MYMATH` using the
-[option](https://cmake.org/cmake/help/latest/command/option.html#command:option) command in
-`MathFunctions/CMakeLists.txt`. In that same file, use that option to
-pass a compile definition to the `MathFunctions` library.
+首先在 `MathFunctions/CMakeLists.txt` 中使用 [option](https://cmake.org/cmake/help/latest/command/option.html#command:option) 命令创建一个变量 `USE_MYMATH`。在同一文件中，使用该选项将编译定义传递给 `MathFunctions` 库。
 
-Then, update `MathFunctions.cxx` to redirect compilation based on
-`USE_MYMATH`.
+然后，更新 `MathFunctions.cxx` 来实现根据 `USE_MYMATH` 变量选择性编译。
 
-Lastly, prevent `mysqrt.cxx` from being compiled when `USE_MYMATH` is on
-by making it its own library inside of the `USE_MYMATH` block of
-`MathFunctions/CMakeLists.txt`.
+最后，在 MathFunctions/CMakeLists.txt 的 `USE_MYMATH` 块内，通过将 mysqrt.cxx 创建为独立的库，来避免在不需要时依旧编译它。****
 
 ### 构建与运行
 
-Since we have our build directory already configured from Exercise 1, we
-can rebuild by simply calling the following:
+由于我们已经在练习 1 中配置好了构建目录，因此只需调用以下命令即可重建：
 
 ```bash
 cd ../Step2_build
 cmake --build .
 ```
 
-Next, run the `Tutorial` executable on a few numbers to verify that
-it\'s still correct.
+接下来，给 `Tutorial` 程序输入几个数据来验证它是否正常工作。
 
-Now let\'s update the value of `USE_MYMATH` to `OFF`. The easiest way is
-to use the [cmake-gui <cmake-gui(1)>](https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html#manual:cmake-gui(1))
-or [ccmake <ccmake(1)>](https://cmake.org/cmake/help/latest/manual/ccmake.1.html#manual:ccmake(1)) if you\'re in
-the terminal. Or, alternatively, if you want to change the option from
-the command-line, try:
+现在让我们把 `USE_MYMATH` 的值更新为 `OFF`。最简单的方法是在终端使用 [cmake-gui <cmake-gui(1)>](https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html#manual:cmake-gui(1)) 或 [ccmake <ccmake(1)>](https://cmake.org/cmake/help/latest/manual/ccmake.1.html#manual:ccmake(1)) 。也可以用命令行更改选项：
 
 ```bash
 cmake ../Step2 -DUSE_MYMATH=OFF
 ```
 
-Now, rebuild the code with the following:
+现在，重新构建代码：
 
 ```bash
 cmake --build .
 ```
 
-Then, run the executable again to ensure that it still works with
-`USE_MYMATH` set to `OFF`. Which function gives better results, `sqrt`
-or `mysqrt`?
+然后，再次运行可执行文件，以确保在将 `USE_MYMATH` 设置为 `OFF` 时仍能运行。对比一下 `sqrt` 和 `mysqrt` 哪个函数的实现结果更好？
 
-### 解决方案
+### 答案
 
-The first step is to add an option to `MathFunctions/CMakeLists.txt`.
-This option will be displayed in the
-[cmake-gui <cmake-gui(1)>](https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html#manual:cmake-gui(1)) and
-[ccmake <ccmake(1)>](https://cmake.org/cmake/help/latest/manual/ccmake.1.html#manual:ccmake(1)) with a default
-value of `ON` that can be changed by the user.
+第一步是在 `MathFunctions/CMakeLists.txt` 中添加一个选项。该选项将显示在 [cmake-gui <cmake-gui(1)>](https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html#manual:cmake-gui(1)) 和 [ccmake <ccmake(1)>](https://cmake.org/cmake/help/latest/manual/ccmake.1.html#manual:ccmake(1)) 中，默认值为 `ON` 。
 
-```html
 <details><summary>TODO 7: 点击显示/隐藏答案</summary>
+
+```cmake
+option(USE_MYMATH "Use tutorial provided math implementation" ON)
 ```
-::: {#CMakeLists.txt-option-library-level .literalinclude caption="TODO 7: MathFunctions/CMakeLists.txt" language="cmake" start-after="# should we use our own math functions" end-before="if (USE_MYMATH)"}
-Step3/MathFunctions/CMakeLists.txt
-:::
 
-```html
-</details>
-```
-Next, make building and linking our library with `mysqrt` function
-conditional using this new option.
+</details></br>
 
-Create an [if](https://cmake.org/cmake/help/latest/command/if.html#command:if) statement which checks
-the value of [USE_MYMATH`. Inside the `if](https://cmake.org/cmake/help/latest/command/USE_MYMATH`. Inside the `if.html#command:USE_MYMATH`. Inside the `if) block, put the
-[target_compile_definitions](https://cmake.org/cmake/help/latest/command/target_compile_definitions.html#command:target_compile_definitions) command
-with the compile definition `USE_MYMATH`.
+接下来，使用新选项为用 `mysqrt` 函数来构建和链接我们的库添加条件。
 
-```html
+创建一条 [if](https://cmake.org/cmake/help/latest/command/if.html#command:if) 语句，检查 `USE_MYMATH` 的值。在 [if](https://cmake.org/cmake/help/latest/command/if.html#command:if) 块中，将 [target_compile_definitions()](https://cmake.org/cmake/help/latest/command/target_compile_definitions.html#command:target_compile_definitions) 命令与编译定义 USE_MYMATH 放在一起。
+
 <details><summary>TODO 8: 点击显示/隐藏答案</summary>
-```
-``` {#CMakeLists.txt-USE_MYMATH .cmake caption="TODO 8: MathFunctions/CMakeLists.txt"}
+
+```cmake
 if (USE_MYMATH)
   target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH")
 endif()
 ```
 
-```html
-</details>
-```
-When `USE_MYMATH` is `ON`, the compile definition `USE_MYMATH` will be
-set. We can then use this compile definition to enable or disable
-sections of our source code.
+</details></br>
 
-The corresponding changes to the source code are fairly straightforward.
-In `MathFunctions.cxx`, we make `USE_MYMATH` control which square root
-function is used:
+当 `USE_MYMATH` 为 `ON` 时，就设置编译定义变量 `USE_MYMATH` ，然后我们就可以使用该编译定义来启用或禁用源代码的各个部分。
 
-```html
+对源代码的相应修改相当简单。在 `MathFunctions.cxx` 中，我们根据 `USE_MYMATH` 控制使用哪个平方根函数：
+
 <details><summary>TODO 9: 点击显示/隐藏答案</summary>
-```
-::: {#MathFunctions-USE_MYMATH-if .literalinclude caption="TODO 9: MathFunctions/MathFunctions.cxx" language="c++" start-after="which square root function should we use?" end-before="}"}
-Step3/MathFunctions/MathFunctions.cxx
-:::
 
-```html
-</details>
+```cxx
+#ifdef USE_MYMATH
+  return detail::mysqrt(x);
+#else
+  return std::sqrt(x);
+#endif
 ```
-Next, we need to include `mysqrt.h` if `USE_MYMATH` is defined.
 
-```html
+</details></br>
+
+接下来，如果定义了 `USE_MYMATH` ，我们需要 include `mysqrt.h`。
+
 <details><summary>TODO 10: 点击显示/隐藏答案</summary>
-```
-::: {#MathFunctions-USE_MYMATH-if-include .literalinclude caption="TODO 10: MathFunctions/MathFunctions.cxx" language="c++" start-after="include <cmath>" end-before="namespace mathfunctions"}
-Step3/MathFunctions/MathFunctions.cxx
-:::
 
-```html
-</details>
+```cxx
+#ifdef USE_MYMATH
+#  include "mysqrt.h"
+#endif
 ```
-Finally, we need to include `cmath` now that we are using `std::sqrt`.
 
-```html
+</details></br>
+
+最后，如果我们使用了 `std::sqrt`，就需要包含 `cmath`。
+
 <details><summary>TODO 11: 点击显示/隐藏答案</summary>
-```
-``` {#tutorial.cxx-include_cmath .c++ caption="TODO 11 : MathFunctions/MathFunctions.cxx"}
+
+```cpp
 #include <cmath>
 ```
 
-```html
-</details>
-```
-At this point, if `USE_MYMATH` is `OFF`, `mysqrt.cxx` would not be used
-but it will still be compiled because the `MathFunctions` target has
-`mysqrt.cxx` listed under sources.
+</details></br>
 
-There are a few ways to fix this. The first option is to use
-[target_sources](https://cmake.org/cmake/help/latest/command/target_sources.html#command:target_sources) to add `mysqrt.cxx`
-from within the `USE_MYMATH` block. Another option is to create an
-additional library within the `USE_MYMATH` block which is responsible
-for compiling `mysqrt.cxx`. For the sake of this tutorial, we are going
-to create an additional library.
+此时，如果 `USE_MYMATH` 为 `OFF`，则不会使用 `mysqrt.cxx`，但它仍会被编译，因为 `MathFunctions` 目标在源代码下列出了 `mysqrt.cxx`。
 
-First, from within `USE_MYMATH` create a library called `SqrtLibrary`
-that has sources `mysqrt.cxx`.
+有几种方法可以解决这个问题。第一种方法是使用 [target_sources](https://cmake.org/cmake/help/latest/command/target_sources.html#command:target_sources) 从 `USE_MYMATH` 代码块中添加 `mysqrt.cxx`。另一种方法是在 `USE_MYMATH` 代码块中创建一个额外的库，负责编译 `mysqrt.cxx`。在本教程中，我们将创建一个附加库。
 
-```html
+首先，在 `USE_MYMATH` 中创建一个名为 `SqrtLibrary` 的库，其源代码为 `mysqrt.cxx`。
+
 <details><summary>TODO 12: 点击显示/隐藏答案</summary>
-```
-::: {#MathFunctions/CMakeLists.txt-add_library-SqrtLibrary .literalinclude caption="TODO 12 : MathFunctions/CMakeLists.txt" language="cmake" start-after="# library that just does sqrt" end-before="# TODO 7: Link"}
-Step3/MathFunctions/CMakeLists.txt
-:::
 
-```html
-</details>
+```cmake
+add_library(SqrtLibrary STATIC
+            mysqrt.cxx
+            )
+target_link_libraries(MathFunctions PRIVATE SqrtLibrary)
 ```
-Next, we link `SqrtLibrary` onto `MathFunctions` when `USE_MYMATH` is
-enabled.
 
-```html
+</details></br>
+
+接下来，当启用 `USE_MYMATH` 时，我们将 `SqrtLibrary` 链接到 `MathFunctions` 上。
+
 <details><summary>TODO 13: 点击显示/隐藏答案</summary>
-```
-::: {#MathFunctions/CMakeLists.txt-target_link_libraries-SqrtLibrary .literalinclude caption="TODO 13 : MathFunctions/CMakeLists.txt" language="cmake" start-after="to tutorial_compiler_flags" end-before="endif()"}
-Step3/MathFunctions/CMakeLists.txt
-:::
 
-```html
-</details>
+```cmake
+target_link_libraries(MathFunctions PRIVATE SqrtLibrary)
 ```
-Finally, we can remove `mysqrt.cxx` from our `MathFunctions` library
-source list because it will be pulled in when `SqrtLibrary` is included.
 
-```html
+</details></br>
+
+最后，我们可以将 `mysqrt.cxx` 从我们的 `MathFunctions` 库源代码列表中移除，因为当 `SqrtLibrary` 被包含时它就会被引入。
+
 <details><summary>TODO 14: 点击显示/隐藏答案</summary>
-```
-::: {#MathFunctions/CMakeLists.txt-remove-mysqrt.cxx-MathFunctions .literalinclude caption="TODO 14 : MathFunctions/CMakeLists.txt" language="cmake" end-before="# TODO 1:"}
-Step3/MathFunctions/CMakeLists.txt
-:::
 
-```html
-</details>
+```cmake
+add_library(MathFunctions MathFunctions.cxx)
 ```
-With these changes, the `mysqrt` function is now completely optional to
-whoever is building and using the `MathFunctions` library. Users can
-toggle `USE_MYMATH` to manipulate what library is used in the build.
+
+</details></br>
+
+有了这些更改，"mysqrt "函数现在对于构建和使用 "MathFunctions "库的用户来说完全是可选的了。用户可以切换 `USE_MYMATH` 来控制在构建过程中使用哪个库。
